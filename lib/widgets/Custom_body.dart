@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'custom_abbpar.dart';
-import 'cusyom_notes_item.dart';
+import 'notes_listview.dart';
 
 class CustomBody extends StatelessWidget {
   const CustomBody({super.key});
@@ -16,7 +16,7 @@ class CustomBody extends StatelessWidget {
             height: 50,
           ),
           CustomAbbpar(),
-          CustomNoteItem(),
+          Expanded(child: NotesListView())
         ],
       ),
     );
