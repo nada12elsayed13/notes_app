@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'custom_abbpar.dart';
+import 'cusyom_notes_item.dart';
 
 class CustomBody extends StatelessWidget {
   const CustomBody({super.key});
@@ -8,12 +9,14 @@ class CustomBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding:  EdgeInsets.symmetric(horizontal: 24),
-      child:  Column(
+      padding: EdgeInsets.symmetric(horizontal: 24),
+      child: Column(
         children: [
-          SizedBox(height: 50,),
+          SizedBox(
+            height: 50,
+          ),
           CustomAbbpar(),
-    
+          CustomNoteItem(),
         ],
       ),
     );
