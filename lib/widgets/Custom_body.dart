@@ -15,7 +15,7 @@ class CustomBody extends StatelessWidget {
           SizedBox(
             height: 50,
           ),
-          CustomAbbpar(),
+          CustomAbbpar(title: 'Note',icon: Icons.search,),
           Expanded(child: NotesListView())
         ],
       ),
