@@ -7,9 +7,11 @@ class CustomBotton extends StatelessWidget {
   const CustomBotton({
     Key? key,
     this.onTap,
+    this.isloading=false,
   }) : super(key: key);
 
   final void Function()? onTap;
+  final bool isloading;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +24,15 @@ class CustomBotton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
           color: kPrimaryColor,
         ),
-        child: const Center(
-          child: Text(
+        child:  Center(
+          child:isloading?const SizedBox(
+            height: 24,
+            width: 24,
+            child:  CircularProgressIndicator(
+              color: Colors.black,
+              
+            ),
+          ):const Text(
             'Add',
             style: TextStyle(
                 color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
