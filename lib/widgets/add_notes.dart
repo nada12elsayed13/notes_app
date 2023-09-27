@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:notes_app/cubit/add_note/add_note_cubit.dart';
-import 'package:notes_app/models/note_model.dart';
+import 'package:notes_app/widgets/colors.dart';
+import 'package:notes_app/widgets/custombutton.dart';
 
+import '../cubit/add_note/add_note_cubit.dart';
+import '../models/note_model.dart';
 import 'customText_field.dart';
-import 'custombutton.dart';
 
 class AddNotes extends StatefulWidget {
   const AddNotes({
@@ -46,6 +47,7 @@ class _AddNotesState extends State<AddNotes> {
             hint: 'Content',
             maxlines: 5,
           ),
+          const ColosListView(),
           const SizedBox(
             height: 32,
           ),
@@ -53,21 +55,7 @@ class _AddNotesState extends State<AddNotes> {
             return CustomBotton(
               isloading: state is AddNoteLoading ? true : false,
               onTap: () {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                  var currentDate = DateTime.now();
-                  var formattedCurrentDate =
-                      DateFormat('dd-MM-yyyy').format(currentDate);
-                  var noteModel = NoteModel(
-                      title: title!,
-                      subTitle: subtitle!,
-                      date: formattedCurrentDate,
-                      color: Colors.blue.value);
-                  BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-                } else {
-                  autovalidateMode = AutovalidateMode.always;
-                  setState(() {});
-                }
+                statusBuutonInAddPage(context);
               },
             );
           }),
@@ -77,5 +65,22 @@ class _AddNotesState extends State<AddNotes> {
         ],
       ),
     );
+  }
+
+  void statusBuutonInAddPage(BuildContext context) {
+    if (formKey.currentState!.validate()) {
+      formKey.currentState!.save();
+      var currentDate = DateTime.now();
+      var formattedCurrentDate = DateFormat('dd-MM-yyyy').format(currentDate);
+      var noteModel = NoteModel(
+          title: title!,
+          subTitle: subtitle!,
+          date: formattedCurrentDate,
+          color: Colors.blue.value);
+      BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+    } else {
+      autovalidateMode = AutovalidateMode.always;
+      setState(() {});
+    }
   }
 }
