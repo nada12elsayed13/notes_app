@@ -47,6 +47,9 @@ class _AddNotesState extends State<AddNotes> {
             hint: 'Content',
             maxlines: 5,
           ),
+          const SizedBox(
+            height: 32,
+          ),
           const ColosListView(),
           const SizedBox(
             height: 32,
