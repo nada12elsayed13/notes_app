@@ -8,10 +8,11 @@ class CustomAbbpar extends StatelessWidget {
     Key? key,
     required this.title,
     required this.icon,
+    this.onPressed,
   }) : super(key: key);
   final String title;
   final IconData icon;
-
+final void Function()? onPressed;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -22,6 +23,7 @@ class CustomAbbpar extends StatelessWidget {
         ),
         const Spacer(),
         CustomIcon(
+          onPressed: onPressed,
           icon: icon,
         ),
       ],

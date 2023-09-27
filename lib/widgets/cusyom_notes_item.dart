@@ -13,13 +13,12 @@ class CustomNoteItem extends StatelessWidget {
     required this.note,
   }) : super(key: key);
   final NoteModel note;
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return const EditNoteView();
+          return  EditNoteView(note:note);
         }));
       },
       child: Container(
