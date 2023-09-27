@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:notes_app/cubit/add_note/add_note_cubit.dart';
 import 'package:notes_app/cubit/readnotes/readnotes_cubit.dart';
+import 'package:notes_app/widgets/showSnakBar.dart';
 
 import 'add_notes.dart';
 
@@ -18,6 +19,7 @@ class AddNoteBottemSheet extends StatelessWidget {
           if (state is AddNoteFauiler) {}
           if (state is AddNoteSuccess) {
             BlocProvider.of<ReadnotesCubit>(context).fetchAllNotes();
+            showSnakbar(context, ' Operation Add is Success.');
             Navigator.pop(context);
           }
         },

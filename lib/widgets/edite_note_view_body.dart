@@ -6,6 +6,9 @@ import 'package:notes_app/cubit/readnotes/readnotes_cubit.dart';
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/widgets/customText_field.dart';
 import 'package:notes_app/widgets/custom_abbpar.dart';
+import 'package:notes_app/widgets/showSnakBar.dart';
+
+import 'edit_view_colors_listView.dart';
 
 class EditNoteViewBody extends StatefulWidget {
   const EditNoteViewBody({
@@ -35,6 +38,7 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
                 widget.note.subTitle = content ?? widget.note.subTitle;
                 widget.note.save();
                 BlocProvider.of<ReadnotesCubit>(context).fetchAllNotes();
+                showSnakbar(context, 'Operation Editing is Success.');
                 Navigator.pop(context);
               },
               title: 'Edit Note',
@@ -57,6 +61,10 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
             hint: widget.note.subTitle,
             maxlines: 5,
           ),
+          const SizedBox(
+            height: 16,
+          ),
+          EditViewColor(note: widget.note)
         ],
       ),
     );

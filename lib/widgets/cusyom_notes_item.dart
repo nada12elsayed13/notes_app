@@ -6,6 +6,7 @@ import 'package:notes_app/cubit/readnotes/readnotes_cubit.dart';
 
 import 'package:notes_app/models/note_model.dart';
 import 'package:notes_app/views/edit_note_view.dart';
+import 'package:notes_app/widgets/showSnakBar.dart';
 
 class CustomNoteItem extends StatelessWidget {
   const CustomNoteItem({
@@ -18,7 +19,7 @@ class CustomNoteItem extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return  EditNoteView(note:note);
+          return EditNoteView(note: note);
         }));
       },
       child: Container(
@@ -48,7 +49,7 @@ class CustomNoteItem extends StatelessWidget {
                 onPressed: () {
                   note.delete();
                   BlocProvider.of<ReadnotesCubit>(context).fetchAllNotes();
-                  
+                  showSnakbar(context, 'Operation Delete is Success.');
                 },
                 icon: const Icon(
                   FontAwesomeIcons.trash,

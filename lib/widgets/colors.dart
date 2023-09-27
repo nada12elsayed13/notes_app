@@ -1,5 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubit/add_note/add_note_cubit.dart';
+import 'package:notes_app/widgets/constes.dart';
 
 class ColorItem extends StatelessWidget {
   const ColorItem({
@@ -13,7 +16,7 @@ class ColorItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isActive
-        ?  CircleAvatar(
+        ? CircleAvatar(
             radius: 38,
             backgroundColor: Colors.white,
             child: CircleAvatar(
@@ -21,7 +24,7 @@ class ColorItem extends StatelessWidget {
               backgroundColor: color,
             ),
           )
-        :  CircleAvatar(
+        : CircleAvatar(
             radius: 38,
             backgroundColor: color,
           );
@@ -37,13 +40,6 @@ class ColosListView extends StatefulWidget {
 
 class _ColosListViewState extends State<ColosListView> {
   int currentIndex = 0;
-  List<Color> color = const [
-    Color(0XFFAC3931),
-    Color(0XFFE5D352),
-    Color(0XFFD9E76C),
-    Color(0XFF537D8D),
-    Color(0XFF482C3D),
-  ];
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -57,6 +53,7 @@ class _ColosListViewState extends State<ColosListView> {
             child: GestureDetector(
               onTap: () {
                 currentIndex = index;
+                BlocProvider.of<AddNoteCubit>(context).color = color[index];
                 setState(() {});
               },
               child: ColorItem(
